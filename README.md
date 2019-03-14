@@ -1,24 +1,22 @@
 # BCBackend
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+SITP 区块链二手市场项目后端源代码，使用 Ruby on Rails 框架。
 
-Things you may want to cover:
+## 版本
 
-* Ruby version
+- Ruby 版本 2.3.5
+- Rails 版本 5.2.1
 
-* System dependencies
+## 如何运行
 
-* Configuration
+如果你没有安装过 Ruby，那请先安装对应版本的 Ruby，推荐使用 [rbenv](https://github.com/rbenv/rbenv)。然后请安装 Bundler（`gem install bundler`），在国内访问速度可能会出现问题，可以参考 [Ruby China 社区源](https://gems.ruby-china.com/)。
 
-* Database creation
+完成之后，在本项目的代码目录下运行 `bundle install`，如果命令成功结束，说明所有的依赖都已经安装好了。当然，系统上需要安装好 Sqlite3 这个数据库。
 
-* Database initialization
+## 初始化数据库
 
-* How to run the test suite
+运行 `rails db:migrate` 即可。
 
-* Services (job queues, cache servers, search engines, etc.)
+## 运行服务器
 
-* Deployment instructions
-
-* ...
+运行 `rails s`，默认端口在 3000，可以通过 `-p` 参数指定另一个端口。
