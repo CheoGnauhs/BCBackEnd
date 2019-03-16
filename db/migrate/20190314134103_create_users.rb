@@ -9,6 +9,8 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.integer :credit, default: 0
       t.integer :balance, default: 0
       t.string :auth_token
+      t.string :district
+      t.string :address
 
       t.timestamps
     end

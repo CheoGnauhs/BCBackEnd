@@ -5,3 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+u = User.create(handle: 'ecnelises', password: 'This1s#t',
+                password_confirmation: 'This1s#t', location: 'Shanghai',
+                district: 'Yangpu', address: 'No.1239 Siping Rd.',
+                email: 'fwage73@gmail.com', telephone: '13807896609', credit: 20)
+
+20.times do
+  Item.create(seller: u, name: "Test Item", price: 100, description: 'test',
+              status: :active)
+end

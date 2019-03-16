@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 2019_03_16_051227) do
     t.integer "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["seller_id"], name: "index_items_on_seller_id", unique: true
+    t.index ["seller_id"], name: "index_items_on_seller_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -91,6 +91,8 @@ ActiveRecord::Schema.define(version: 2019_03_16_051227) do
     t.integer "credit", default: 0
     t.integer "balance", default: 0
     t.string "auth_token"
+    t.string "district"
+    t.string "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
