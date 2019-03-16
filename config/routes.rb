@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
-  resources :users, only: :create
-  resources :orders
-  resources :items
-  resources :sessions, only: %i[create destroy]
+  scope '/api' do
+    resources :users, only: :create
+    resources :orders
+
+    resources :items do
+      collection do
+        get 'search'
+      end
+    end
+
+    resources :sessions, only: %i[create destroy]
+  end
 end
