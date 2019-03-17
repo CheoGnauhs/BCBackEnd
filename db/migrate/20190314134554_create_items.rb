@@ -4,9 +4,12 @@ class CreateItems < ActiveRecord::Migration[5.2]
       t.integer :seller_id
       t.string :name
       t.decimal :price
-      t.string :image
       t.string :description
       t.integer :status
+      t.string :district
+      t.integer :fineness
+      t.integer :method
+      t.integer :field
 
       t.timestamps
     end

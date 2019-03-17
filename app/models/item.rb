@@ -6,4 +6,6 @@ class Item < ApplicationRecord
   has_one_attached :cover
 
   enum status: %i[active sold closed]
+  enum field: %i[book stationary supplies]
+  enum method: %i[online offline]
 end

@@ -58,9 +58,12 @@ ActiveRecord::Schema.define(version: 2019_03_17_085035) do
     t.integer "seller_id"
     t.string "name"
     t.decimal "price"
-    t.string "image"
     t.string "description"
     t.integer "status"
+    t.string "district"
+    t.integer "fineness"
+    t.integer "method"
+    t.integer "field"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["seller_id"], name: "index_items_on_seller_id"
@@ -111,7 +114,6 @@ ActiveRecord::Schema.define(version: 2019_03_17_085035) do
     t.string "location"
     t.integer "credit", default: 0
     t.integer "balance", default: 0
-    t.string "auth_token"
     t.string "district"
     t.string "address"
     t.datetime "created_at", null: false

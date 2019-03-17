@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :authorize_session, except: %i[index search]
-  before_action :get_item, only: %i[collection cancel_collection]
+  before_action :authorize_session, except: %i[index search show]
+  before_action :get_item, only: %i[collection cancel_collection show]
 
   def index
     @items = Item.active.limit(20)
@@ -8,6 +8,10 @@ class ItemsController < ApplicationController
   end
 
   def search
+  end
+
+  def show
+    @user = current_user if signed_in?
   end
 
   def create
@@ -22,14 +26,14 @@ class ItemsController < ApplicationController
     unless @item.collections.where(user: current_user).first
       Collection.create!(item: @item, user: current_user)
     end
-    render status: :ok, nothing: true
+    render status: :ok, json: {}
   end
 
   def cancel_collection
     if cl = @item.collections.where(user: current_user).first
       cl.destroy!
     end
-    render status: :ok, nothing: true
+    render status: :ok, json: {}
   end
 
   def upload
@@ -43,6 +47,7 @@ class ItemsController < ApplicationController
     end
 
     def item_params
-      params.permit(:id, :name, :price, :description)
+      params.permit(:id, :name, :price, :description, :fineness, :method,
+                    :field, :district)
     end
 end
