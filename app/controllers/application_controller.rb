@@ -25,6 +25,6 @@ class ApplicationController < ActionController::API
 
   protected
     def authorize_session
-      return unless signed_in?
+      render status: :unauthorized, json: { error: 'Unauthorized' } unless signed_in?        
     end
 end

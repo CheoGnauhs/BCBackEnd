@@ -9,16 +9,24 @@ Rails.application.routes.draw do
 
     resources :items do
       collection do
-        get 'search'
+        get  'search'
+        post 'upload'
       end
 
       member do
-        post 'collection'
+        post   'collection'
+        delete 'collection' => :cancel_collection
       end
     end
 
     resources :sessions, only: %i[create destroy]
 
-    get 'profile', to: 'users#profile'
+    resource :profile, controller: :profile do
+      member do
+        get 'collections'
+        get 'items'
+        get 'orders'
+      end
+    end
   end
 end
