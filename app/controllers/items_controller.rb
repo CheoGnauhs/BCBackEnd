@@ -8,6 +8,9 @@ class ItemsController < ApplicationController
   end
 
   def search
+    @items = Item.where('name LIKE :needle OR description LIKE :needle OR field LIKE :needle', needle: "%#{params[:q]}%")
+    @user = current_user if signed_in?
+    render :index
   end
 
   def show
