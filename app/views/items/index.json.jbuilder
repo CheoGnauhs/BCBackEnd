@@ -5,6 +5,8 @@ json.array! @items do |item|
 
   json.image(url_for(item.cover))
 
+  json.field(item.tags.pluck(:name))
+
   if @user
     json.collected(!!item.collections.where(user: @user).first)
   end

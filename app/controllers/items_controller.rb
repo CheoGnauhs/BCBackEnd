@@ -23,6 +23,7 @@ class ItemsController < ApplicationController
     else
       @item = Item.create!(item_params.merge(seller: current_user, status: :active))
     end
+    @item.set_tags(params[:field])
   end
 
   def collection
@@ -50,7 +51,6 @@ class ItemsController < ApplicationController
     end
 
     def item_params
-      params.permit(:id, :name, :price, :description, :fineness, :method,
-                    :field, :district)
+      params.permit(:id, :name, :price, :description, :fineness, :method, :district)
     end
 end
