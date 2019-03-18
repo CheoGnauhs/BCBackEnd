@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>您好, <%= @receiver.handle %></h1>
+    <p>
+      您刚刚在商品「<%= @item.name %>」收到了一条新的评论：
+      <blockquote><%= @comment.content %></blockquote>
+    </p>
+    <p>
+      请点击 <%= "#{@host_with_port}/item-detail/#{@item.id}" %> 查看详情.
+    </p>
+    <p>浣熊团队</p>
+  </body>
+</html>

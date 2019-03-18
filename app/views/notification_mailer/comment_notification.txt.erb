@@ -1,0 +1,10 @@
+您好, 亲爱的 <%= @receiver.handle %>
+======
+
+您刚刚在商品「<%= @item.name %>」收到了一条新的评论：
+
+<%= @comment.content %>
+
+请前往 <%= "host/item-detail/#{@item.id}" 查看详情。
+
+浣熊团队

@@ -61,6 +61,7 @@ class ItemsController < ApplicationController
 
   def add_comment
     comment = Comment.create!(content: params[:content], user: current_user, thread_id: params[:thread], item: @item)
+    NotificationMailer.comment_notification(@item.seller, comment, request.host).deliver_now
     render status: :ok, json: comment
   end
 
