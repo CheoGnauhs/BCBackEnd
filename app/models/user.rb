@@ -4,6 +4,6 @@ class User < ApplicationRecord
   has_many :items, foreign_key: 'seller_id'
 
   def avatar
-    'https://www.gravatar.com/avatar/' + Digest::MD5.hexdigest(email)
+    Digest::MD5.hexdigest(email)
   end
 end
