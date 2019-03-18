@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :get_user, only: %i[show]
 
   def create
-    @user = User.create!(user_params)
+    @user = User.create!(balance: 50, **user_params)
     @session = Session.signin!(@user, request.ip)
   end
 

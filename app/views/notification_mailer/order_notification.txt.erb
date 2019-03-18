@@ -1,0 +1,11 @@
+您好, 亲爱的 <%= @receiver.name || @receiver.handle %>
+======
+
+您的商品「<%= @item.name %>」收到了来自用户「<%= @buyer.name || @buyer.handle %>」的购买。
+
+他的联系方式为：
+
+- 地址：<%= @order.address %>
+- 手机号：<%= @order.telephone %>
+
+浣熊团队

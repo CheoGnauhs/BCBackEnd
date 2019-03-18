@@ -1,0 +1,8 @@
+json.(@order, :id, :address, :created_at)
+json.price(@order.item.price)
+json.title(@order.item.name)
+json.description(@order.item.description)
+json.seller(@order.item.seller.name || @order.item.seller.handle)
+json.image(url_for(@order.item.cover))
+json.chain_id(Digest::SHA256.hexdigest(@order.id.to_s.upcase))
+json.previous_chain_id(Digest::SHA256.hexdigest((@order.id - 1).to_s.upcase))

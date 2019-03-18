@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authorize_session, except: %i[index search show comments]
-  before_action :get_item, only: %i[collection cancel_collection show add_comment]
+  before_action :get_item, only: %i[collection cancel_collection show add_comment close]
 
   def index
     @items = Item.active.limit(20)
@@ -8,7 +8,7 @@ class ItemsController < ApplicationController
   end
 
   def search
-    @items = Item.where('name LIKE :needle OR description LIKE :needle OR field LIKE :needle', needle: "%#{params[:q]}%")
+    @items = Item.active.where('name LIKE :needle OR description LIKE :needle OR field LIKE :needle', needle: "%#{params[:q]}%")
     @user = current_user if signed_in?
     render :index
   end
@@ -38,6 +38,15 @@ class ItemsController < ApplicationController
       cl.destroy!
     end
     render status: :ok, json: {}
+  end
+
+  def close
+    if @item.seller.id != current_user.id
+      render status: :unauthorized, json: {}
+    else
+      @item.update!(status: :closed)
+      render status: :ok, json: {}
+    end
   end
 
   def upload

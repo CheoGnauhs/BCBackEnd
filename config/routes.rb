@@ -3,7 +3,9 @@ Rails.application.routes.draw do
     resources :users, only: :create
     resources :orders do
       member do
-        post 'cancellation'
+        post 'cancel'
+        post 'ensure'
+        get  'blockchain'
       end
     end
 
@@ -14,6 +16,7 @@ Rails.application.routes.draw do
       end
 
       member do
+        post   'close'
         post   'collection'
         delete 'collection' => :cancel_collection
         get    'comments'
