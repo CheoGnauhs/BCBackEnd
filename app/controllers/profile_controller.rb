@@ -26,6 +26,6 @@ class ProfileController < ApplicationController
 
   private
     def profile_params
-      params.permit(:telephone, :location, :district, :address, :email)
+      params.permit(:telephone, :location, :district, :address, :email, :name)
     end
 end
