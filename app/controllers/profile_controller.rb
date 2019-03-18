@@ -17,7 +17,7 @@ class ProfileController < ApplicationController
   end
 
   def orders
-    render status: :ok, json: []
+    @orders = current_user.orders
   end
 
   def items
