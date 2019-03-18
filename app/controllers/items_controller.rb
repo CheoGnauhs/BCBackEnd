@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :authorize_session, except: %i[index search show]
-  before_action :get_item, only: %i[collection cancel_collection show]
+  before_action :authorize_session, except: %i[index search show comments]
+  before_action :get_item, only: %i[collection cancel_collection show add_comment]
 
   def index
     @items = Item.active.limit(20)
@@ -43,6 +43,25 @@ class ItemsController < ApplicationController
   def upload
     @item = Item.create!(seller: current_user)
     @item.cover.attach(params[:file])
+  end
+
+  def comments
+    comments = Comment.includes(:user).where(item_id: params[:id]).order('created_at ASC')
+    @headless = comments.find_all { |c| c.thread_id.nil? }
+    thread_map = {}
+    @replies = {}
+    @headless.each { |h| thread_map[h.id] = h.id }
+    comments.each do |c|
+      next if c.thread_id.nil?
+      @replies[thread_map[c.thread_id]] ||= []
+      @replies[thread_map[c.thread_id]] << c
+      thread_map[c.id] = thread_map[c.thread_id]
+    end
+  end
+
+  def add_comment
+    comment = Comment.create!(content: params[:content], user: current_user, thread_id: params[:thread], item: @item)
+    render status: :ok, json: comment
   end
 
   private

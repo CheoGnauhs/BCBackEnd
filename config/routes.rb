@@ -16,6 +16,8 @@ Rails.application.routes.draw do
       member do
         post   'collection'
         delete 'collection' => :cancel_collection
+        get    'comments'
+        post   'comments'   => :add_comment
       end
     end
 
