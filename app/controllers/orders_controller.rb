@@ -11,7 +11,7 @@ class OrdersController < ApplicationController
       render status: :ok, json: { error: 'NOT_AVAILABLE' }
     else
       Order.transaction do
-        current_user.update!(balance: current_user.balance - @item.price)
+        current_user.update!(balance: current_user.balance - @item.price, credit: current_user.credit + 1)
         @item.update!(status: :sold)
         @order = Order.create!(address: params[:address], telephone: params[:telephone],
                                status: :progress, user: current_user, item: @item)
